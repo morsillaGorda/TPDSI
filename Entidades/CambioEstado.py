@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import Estado
+from Entidades.Estado import Estado
 
 
 class CambioEstado:

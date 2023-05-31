@@ -1,10 +1,14 @@
+from Entidades.SubOpcionLlamada import SubOpcionLlamada
+from Entidades.Validacion import Validacion
+
 class OpcionLlamada:
-    def init(self, audioMensajeSubOpcion, mensajeSubOpcion, nombre, nroOrden):
+    def init(self, audioMensajeSubOpcion, mensajeSubOpciones, nombre, nroOrden):
         self.audioMensajeSubOpcion = audioMensajeSubOpcion
-        self.mensajeSubOpcion = mensajeSubOpcion
+        self.mensajeSubOpciones = mensajeSubOpciones
         self.nombre = nombre
         self.nroOrden = nroOrden
-        self.subopciones = []
+        self.subOpcionLlamada: SubOpcionLlamada = []
+        self.validacionesRequeridas: Validacion = []
 
     def getAudioMensajeSubOpcion(self):
         return self.audioMensajeSubOpcion

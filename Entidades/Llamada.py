@@ -1,10 +1,22 @@
+from typing import List
+
+from Entidades.OpcionLlamada import OpcionLlamada
+from Entidades.SubOpcionLlamada import SubOpcionLlamada
+from Entidades.Cliente import Cliente
+from Entidades.CambioEstado import CambioEstado
+
 class Llamada:
-    def init(self, descripcionOperador, detalleAccionRequerida):
+    def init(self, descripcionOperador, detalleAccionRequerida, cambioEstado: List[CambioEstado], cliente: Cliente):
         self.descripcionOperador = descripcionOperador
         self.detalleAccionRequerida = detalleAccionRequerida
         self.duracion = 0
         self.encuestaEnviada = False
         self.observacionAuditor = ""
+        
+        self.opcionSeleccionada: OpcionLlamada = None
+        self.subOpcionLlamada: SubOpcionLlamada = None
+        self.cambioEstado = cambioEstado
+        self.cliente = cliente
 
     def calcularDuracion(self, inicio, fin):
         self.duracion = fin - inicio

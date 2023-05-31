@@ -1,6 +1,5 @@
-class OpcionValidacion(Validacion):
-    def init(self, audioMensajeValidacion, nombre, correcta, descripcion):
-        super().init(audioMensajeValidacion, nombre)
+class OpcionValidacion():
+    def init(self, correcta, descripcion):
         self.correcta = correcta
         self.descripcion = descripcion
 

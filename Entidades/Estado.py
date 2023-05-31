@@ -11,5 +11,6 @@ class Estado:
         pass
 
     def getNombre(self):
+        # Obitene el nombre del estado
         return self.nombre
 
