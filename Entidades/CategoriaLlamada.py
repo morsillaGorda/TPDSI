@@ -28,11 +28,18 @@ class CategoriaLlamada():
         opcionesValidacion = []
 
         for opc in self.opcion:
-            opcionesValidacion = OpcionLlamada.buscarValidaciones()
-            opcionesValidacion.append(opcionesValidacion)
+            opcionValidacion = opc.buscarValidaciones()
+            opcionesValidacion.append(opcionValidacion)
 
         return opcionesValidacion
 
 
     def getDescripcionCompletaCategoriaYOpcion(self):
-        return self.opcion.getDescripcionConSubOpcion()
+
+        descripciones = []
+
+        for opc in self.opcion:
+            descripcion = opc.getDescripcionConSubOpcion()
+            descripciones.append(descripcion)
+
+        return descripciones

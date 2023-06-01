@@ -55,15 +55,15 @@ subOpcionLlamadaRobo2b: SubOpcionLlamada = SubOpcionLlamada("Extension", 2)
 subOpcionLlamadaRobo2a.validacionRequerida = [validacion1, validacion2]
 
 subOpcionesLlamadaRobo2: List[SubOpcionLlamada] = [subOpcionLlamadaRobo2a]
-opcionLlamadaRobo1: OpcionLlamada = OpcionLlamada("Informar robo", "Informar robo", "Informar robo", 1, [])
+opcionLlamadaRobo1: OpcionLlamada = OpcionLlamada("Informar robo", "Informar robo", "Informar robo", 1)
 
 opcionLlamadaRobo2: OpcionLlamada = OpcionLlamada("Solicitar nueva tarjeta de crédito",
                                                   "Solicitar nueva tarjeta de crédito",
-                                                  "Solicitar nueva tarjeta de credito", 2, subOpcionesLlamadaRobo2)
+                                                  "Solicitar nueva tarjeta de credito", 2)
 
 opcionLlamadaRobo3: OpcionLlamada = OpcionLlamada("Solicitar cancelación de la tarjeta de crédito",
                                                   "Solicitar cancelación de la tarjeta de crédito",
-                                                  "Solicitar cancelacion de la tarjetaDeCredito", 3, [])
+                                                  "Solicitar cancelacion de la tarjetaDeCredito", 3)
 
 opcionesCategoriaLlamadaRobo: List[OpcionLlamada] = [
     # opcionLlamadaRobo1,

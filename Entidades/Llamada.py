@@ -7,7 +7,7 @@ from Entidades.Cliente import Cliente
 from Entidades.CambioEstado import CambioEstado
 
 class Llamada:
-    def __init__(self, cambioEstado: List[CambioEstado], cliente: Cliente):
+    def __init__(self, cliente: Cliente, cambioEstado: List[CambioEstado]):
         self.descripcionOperador = ""
         self.detalleAccionRequerida = ""
         self.duracion = 0
@@ -59,7 +59,7 @@ class Llamada:
             if cambioEstado.esUltimoEstado():
                 ultimoCambioEstado = cambioEstado
                  
-        ultimoCambioEstado.setFechaHoraFin(fechaHoraFin) # Establecer la fecha y hora de finalización en el último cambio de estado encontrado
+        ultimoCambioEstado.getFechaHoraFin(fechaHoraFin) # Establecer la fecha y hora de finalización en el último cambio de estado encontrado
 
         nuevoCambioEstado = CambioEstado.new(fechaHoraFin, estado)  # Crear un nuevo cambio de estado con la fecha y hora de inicio = fechaHoraEstadoFin del ultimo estado y el estado proporcionados
     
