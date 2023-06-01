@@ -2,7 +2,7 @@ from Entidades.OpcionValidacion import OpcionValidacion     #Importamos las rela
 from Entidades.Validacion import Validacion
 
 class InformacionCliente:
-    def init(self, datoAValidar, validacion: Validacion):
+    def __init__(self, datoAValidar, validacion: Validacion):
         #Inicializa los atributos con los valores recibidos
         self.datoAValidar = datoAValidar #
         self.esInformacionCorrecta = validacion #Validación de la información del Cliente

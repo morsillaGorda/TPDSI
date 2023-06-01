@@ -1,5 +1,5 @@
 class OpcionValidacion():
-    def init(self, correcta, descripcion):
+    def __init__(self, correcta, descripcion):
         #Inicializa los atributos con los valores recibidos
         self.correcta = correcta
         self.descripcion = descripcion

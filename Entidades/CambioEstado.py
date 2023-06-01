@@ -4,9 +4,10 @@ from Entidades.Estado import Estado #Impotamos la relación asosiación con la c
 
 
 class CambioEstado:
-    def init(self, fechaHoraInicio: datetime, estado: Estado):
+    def __init__(self, fechaHoraInicio: datetime, estado: Estado):
         self.fechaHoraInicio = fechaHoraInicio
         self.estado = estado
+        self.fechaHoraFin = None
 
     def esEstadoInicial(self):
         #Verifica si el estado asociado es Inicial
@@ -14,11 +15,15 @@ class CambioEstado:
 
     def esUltimoEstado(self):
         #Verififca si el estado asociado es Finalizado
-        return self.esFinalizada()
+        return self.fechaHoraFin is None
 
-    def getFechaInicio(self):
+    def getFechaHoraInicio(self):
         #Obtiene la fecha y hora del cambio de estado
         return self.fechaHoraInicio
+    
+    def getFechaHoraFin(self, fechaHoraFin):
+        #Seteo de FechaHoraFin
+        self.fechaHoraFin = fechaHoraFin  
 
     def getNombreEstado(self):
         #Obtiene el nombre del estado asociado

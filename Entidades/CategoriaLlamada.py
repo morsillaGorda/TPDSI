@@ -3,7 +3,7 @@ from typing import List # librería integrada para manejr Listas de Objetos ante
 from Entidades.OpcionLlamada import OpcionLlamada # Importamos la relación asociación con la clase OpciónLlamada
 
 class CategoriaLlamada():
-    def init(self, audioMensajeOpciones, mensajeOpciones, nombre, nroOrden, opcion: List[OpcionLlamada]):
+    def __init__(self, audioMensajeOpciones, mensajeOpciones, nombre, nroOrden, opcion: List[OpcionLlamada]):
         # Inicializa los atributos con los valores que se recibieron
         self.audioMensajeOpciones = audioMensajeOpciones
         self.mensajeOpciones = mensajeOpciones
@@ -23,8 +23,16 @@ class CategoriaLlamada():
         #Devuelve el valor del atributo "nombre"
         return self.nombre
     
+
     def buscarValidaciones(self):
-        return self.opcion
+        opcionesValidacion = []
+
+        for opc in self.opcion:
+            opcionesValidacion = OpcionLlamada.buscarValidaciones()
+            opcionesValidacion.append(opcionesValidacion)
+
+        return opcionesValidacion
+
 
     def getDescripcionCompletaCategoriaYOpcion(self):
         return self.opcion.getDescripcionConSubOpcion()

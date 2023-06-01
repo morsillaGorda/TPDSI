@@ -2,7 +2,7 @@ from typing import List #Importamos una librería integrada para crear listas de
 from Entidades.Validacion import Validacion #Importamos la relacion de asociación con la clase Validacion
 
 class SubOpcionLlamada:
-    def init(self, nombre, nroOrden):
+    def __init__(self, nombre, nroOrden):
         # Inicializa los atributos con los valores recibidos
         self.nombre = nombre
         self.nroOrden = nroOrden
@@ -16,13 +16,13 @@ class SubOpcionLlamada:
         #Devuelve el valor del atributo "nombre"
         return self.nombre
     
-    def getMensajeValidacion(self):
+    def buscarValidaciones(self):
          # Crea una lista vacía para almacenar los mensajes de validación
         mensajesValidacion = []
         
         # Itera sobre cada objeto de Validación en la lista validacionRequerida
         for validacion in self.validacionRequerida:
-            mensajeValidacion = validacion.getMensajeValidacion()
+            mensajeValidacion = Validacion.getMensajeValidacion()
             mensajesValidacion.append(mensajeValidacion)
         
         # Devuelve la lista de mensajes de validación

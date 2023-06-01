@@ -2,7 +2,7 @@ from typing import List     #Importamos librería integrada para crear listas de
 from Entidades.OpcionValidacion import OpcionValidacion #Importamos la relacion de agregacion con la clase OpcionValidacion
 
 class Validacion:
-    def init(self, audioMensajeValidacion, nombre, opcionesValidacion: List[OpcionValidacion]):
+    def __init__(self, audioMensajeValidacion, nombre, opcionesValidacion: List[OpcionValidacion]):
         #Inicializamos los valores de los atributos
         self.audioMensajeValidacion = audioMensajeValidacion
         self.nombre = nombre
@@ -13,9 +13,14 @@ class Validacion:
         return self.audioMensajeValidacion
 
     def getMensajeValidacion(self):
-        mensajeValidacion = self.opcionesValidacion
-        return mensajeValidacion
+         # Crea una lista vacía para almacenar los mensajes de validación
+        mensajesValidacion = []
+        
+        # Itera sobre cada objeto de Validación en la lista validacionRequerida
+        for opcValidacion in self.validacionRequerida:
+            mensajeValidacion = OpcionValidacion.getCorrecta()
+            mensajesValidacion.append(mensajeValidacion)
+        
+        # Devuelve la lista de mensajes de validación
+        return mensajesValidacion
 
-    def getCorrecta(self):
-        #Verifica si la opcion es correcta
-        return self.opcionesValidacion

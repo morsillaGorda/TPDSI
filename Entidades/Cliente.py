@@ -3,7 +3,7 @@ from typing import List
 from Entidades.InformacionCliente import InformacionCliente
 
 class Cliente:
-    def init(self, dni, nombreCompleto, nroCelular, info: List[InformacionCliente]):
+    def __init__(self, dni, nombreCompleto, nroCelular, info: List[InformacionCliente]):
         self.dni = dni
         self.nombreCompleto = nombreCompleto
         self.nroCelular = nroCelular

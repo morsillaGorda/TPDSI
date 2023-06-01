@@ -4,7 +4,7 @@ from tkinter import messagebox
 
                        
 
-class PantallaRegistrarRespuestaDeOperador:
+class PantallaRtaOperador:
     def __init__(self, gestor):
         self.gestor = gestor
         self.ventana = tk.Tk()
@@ -37,12 +37,12 @@ class PantallaRegistrarRespuestaDeOperador:
         self.accion_realizar_input = None
         self.confirmar_button = None
 
-    def mostrarDatosDeLaLlamada(self, nombreClienteLlamada, descripcionCategoriaYOpcion):
-        self.label2.config(text=nombreClienteLlamada)
-        self.label3.config(text=descripcionCategoriaYOpcion)
+    def mostrarDatosDeLaLlamada(self, nombreCliente, descripcionCategoriasOpcionesSubopciones):
+        self.label2.config(text= nombreCliente)
+        self.label3.config(text= descripcionCategoriasOpcionesSubopciones)
 
-    def mostrarOpcionesDeValidacion(self, mensajesValidacionesDeSubopcionSeleccionada):
-        for mensajeValidacion in mensajesValidacionesDeSubopcionSeleccionada:
+    def mostrarOpcionesDeValidacion(self, validaciones):
+        for mensajeValidacion in validaciones:
             self.resultadosMensajesValidacion.append([mensajeValidacion[1], False])
             primer_texto = mensajeValidacion[0]
             opciones_validacion = mensajeValidacion[1]

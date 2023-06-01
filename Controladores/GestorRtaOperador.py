@@ -6,7 +6,7 @@ from typing import List
 from Entidades.Estado import Estado
 from Entidades.Llamada import Llamada
 from Entidades.CategoriaLlamada import CategoriaLlamada
-from Entidades import OpcionValidacion
+from Entidades.OpcionValidacion import OpcionValidacion
 from Entidades.Cliente import Cliente
 from Interfaces.PantallaRtaOperador import PantallaRtaOperador
 
@@ -14,7 +14,7 @@ from Interfaces.PantallaRtaOperador import PantallaRtaOperador
 estados: List[Estado]  = [
     Estado("Finalizado"),
     Estado("EnCurso"),
-    Estado("Iniciado")
+    
 ]
 
 #Datos que puede guardar el Gestor
@@ -29,6 +29,8 @@ descripcionCategoriasOpcionesSubopciones = None
 operador = ""
 pantallaRtaOperador: PantallaRtaOperador
 validaciones = None
+accionRequerida = True
+informacionRequerida = ""
 
 
 class GestorRtaOperador:
@@ -40,20 +42,20 @@ class GestorRtaOperador:
     def nuevaRtaOperador(self):
 
         global datosLlamadas
-        global estadoEnCurso
-        global estadoFinalizada
         global fechaActual
         global nombreCliente
         global descripcionCategoriasOpcionesSubopciones
         global operador
         global validaciones
         global informacionCliente
+        global accionRequerida
+        global informacionRequerida
 
         self.buscarEstadoEnCurso()
 
-        fechaActual = self.obtenerFechaActual()
+        fechaActual = self.obtenerFechaHoraActual()
 
-        self.llamada.setEstadoActual(estadoEnCurso,fechaActual)
+        self.llamada.esEnCurso(estadoEnCurso,fechaActual)
 
         self.obtenerDatosLlamada()
 
@@ -61,48 +63,79 @@ class GestorRtaOperador:
 
         self.pantallaRtaOperador.mostrarOpcionesDeValidacion(validaciones)
 
+        self.pantallaRtaOperador.solcitarConfirmacion()
+
         self.pantallaRtaOperador.run()
 
-        def buscarEstadoEnCurso(self):
+    def buscarEstadoEnCurso(self):
 
-            global estadoEnCurso
+        global estadoEnCurso
 
-            for estado in estados:
+        for estado in estados:
+            if estado.esEnCurso():
+
                 estadoEnCurso = estado
 
-        def obtenerFechaHoraActual(self):
-            return datetime.now()
+    def obtenerFechaHoraActual(self):
+        return datetime.datetime.now()
 
-        def obtenerDatosLlamada(self):
-            global nombreCliente
-            global descripcionCategoriasOpcionesSubopciones
+    def obtenerDatosLlamada(self):
+        global nombreCliente
+        global descripcionCategoriasOpcionesSubopciones
 
-            nombreCliente = self.llamada.getNombreClienteDeLlamada()
-            descripcionCategoriasOpcionesSubopciones = self.categoriaLlamada.getDescripcionCompletaCategoriaYOpcion()
+        nombreCliente = self.llamada.getNombreClienteDeLlamada()
+        descripcionCategoriasOpcionesSubopciones = self.categoriaLlamada.getDescripcionCompletaCategoriaYOpcion()
 
-        def tomarDatosValidacion(self):
-            global validaciones
-
-            validaciones = self.categoriaLlamada.buscarValidaciones()
-
-
-        def obtenerDatosOperador(self):
-
-            global operador
-
-            operador = self.llamada.tomarOperador()
+    def tomarDatosValidacion(self, opcionSeleccionada):
+        informacionCliente = self.llamada.cliente.esInformacionCorrecta(opcionSeleccionada)
+        self.pantallaRegistrarRespuestaDeOperador.habilitarSeleccionRespuesta(informacionCliente, opcionSeleccionada)
 
 
-        def validarInformacionCliente(self):
+    def obtenerDatosOperador(self):
 
-            global informacionCliente
+        global operador
 
-            informacionCliente = self.Cliente.esInformacionCorrecta()
+        operador = self.llamada.tomarOperador()
+
+
+    def validarInformacionCliente(self):
+
+        global informacionCliente
+
+        informacionCliente = self.Cliente.esInformacionCorrecta()
 
         
-        def buscarEstadoFinalizada(self):
+    def buscarEstadoFinalizada(self):
 
-            global estadoFinalizada
+        global estadoFinalizada
 
-            for estado in estados:
-                estadoFinalizada = estado
+        for estado in estados:
+            estadoFinalizada = estado
+
+    def llamarCU28(self):
+        global accionRequerida
+        global informacionRequerida
+
+        if accionRequerida == True:
+            informacionRequerida ="Informacion Requerida exitosa"
+        else:
+            informacionRequerida = "Información Requerida error"   # flujo alternativo 3
+
+    def tomarConfirmacion(self, descripcion_consulta, accion_realizar):
+        global fechaHoraActualInicioLlamada
+        global fechaHoraFinLlamada
+        global estadoFinalizado
+        self.llamarCU28(accion_realizar)
+        self.buscarEstadoFinalizado()
+        fechaHoraFinLlamada = self.obtenerFechaHoraActual()
+        duracion = self.llamada.calcularDuracion(fechaHoraActualInicioLlamada, fechaHoraFinLlamada)
+        # Seteo el estado actual de la llamada a "Finalizado"
+        self.llamada.setEstadoActual(estadoFinalizado, fechaHoraFinLlamada)
+        self.llamada.setDuracion(duracion)
+        self.llamada.setDescripcionOperador(descripcion_consulta)
+        self.pantallaRegistrarRespuestaDeOperador.mostrarMensajeDeConfirmacion()
+        self.finCU()
+
+
+    def finCU():
+        exit()

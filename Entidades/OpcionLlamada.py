@@ -2,14 +2,14 @@ from Entidades.SubOpcionLlamada import SubOpcionLlamada         #Importamos la r
 from Entidades.Validacion import Validacion         #Importamos la relacion de asociacion con la clase Validacion
 
 class OpcionLlamada:
-    def init(self, audioMensajeSubOpcion, mensajeSubOpciones, nombre, nroOrden):
+    def __init__(self, audioMensajeSubOpcion, mensajeSubOpciones, nombre, nroOrden, subOpcionLlamada: SubOpcionLlamada):
         #Inicializamos los valores de los atributos
         self.audioMensajeSubOpcion = audioMensajeSubOpcion
         self.mensajeSubOpciones = mensajeSubOpciones
         self.nombre = nombre
         self.nroOrden = nroOrden
 
-        self.subOpcionLlamada: SubOpcionLlamada = []
+        self.subOpcionLlamada= subOpcionLlamada
         self.validacionesRequeridas: Validacion = []
 
     def getAudioMensajeSubOpcion(self):
@@ -28,6 +28,17 @@ class OpcionLlamada:
     def getNroOrden(self):
         # Devuelve el valor del atributo 'nroOrden'
         return self.nroOrden
+    
+    def buscarValidaciones(self):
+        #Busca los valores del atributo 
+        subOpcionesValidacion = []
+
+        for opc in self.subOpcionLlamada:
+            subOpcionesValidacion = SubOpcionLlamada.getMensajeValidacion()
+            subOpcionesValidacion.append(subOpcionesValidacion)
+
+        return subOpcionesValidacion
+    
     
     
 
