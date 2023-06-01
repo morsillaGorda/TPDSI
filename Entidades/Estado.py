@@ -1,16 +1,17 @@
 class Estado:
     def init(self, nombre):
-        self.nombre = nombre
+        # Inicializa el atributo "nombre" con el valor proporcionado
+        self.nombre = nombre 
 
     def esFinalizada(self):
-        # Lógica para verificar si el estado es finalizado
-        pass
+        # Lógica para verificar si el estado es finalizado con un booleano
+        return self.nombre == "Finalizado"
 
     def esIniciada(self):
-        # Lógica para verificar si el estado es iniciado
-        pass
+        # Lógica para verificar si el estado es iniciado con un booleano
+        return self.nombre == "Iniciado"
 
     def getNombre(self):
-        # Obitene el nombre del estado
+        # Obtiene el nombre del estado
         return self.nombre
 

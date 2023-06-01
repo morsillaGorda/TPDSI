@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import datetime # Librería integrada que maneja las fechas
 
-from Entidades.Estado import Estado
+from Entidades.Estado import Estado #Impotamos la relación asosiación con la clase estado
 
 
 class CambioEstado:
@@ -9,15 +9,19 @@ class CambioEstado:
         self.estado = estado
 
     def esEstadoInicial(self):
-        return self.estado.esIniciada()
+        #Verifica si el estado asociado es Inicial
+        return self.esIniciada()
 
     def esUltimoEstado(self):
-        return self.estado.esFinalizada()
+        #Verififca si el estado asociado es Finalizado
+        return self.esFinalizada()
 
     def getFechaInicio(self):
+        #Obtiene la fecha y hora del cambio de estado
         return self.fechaHoraInicio
 
     def getNombreEstado(self):
+        #Obtiene el nombre del estado asociado
         return self.estado.getNombre()
 
 

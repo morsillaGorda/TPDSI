@@ -6,12 +6,13 @@ from Entidades.Cliente import Cliente
 from Entidades.CambioEstado import CambioEstado
 
 class Llamada:
-    def init(self, descripcionOperador, detalleAccionRequerida, cambioEstado: List[CambioEstado], cliente: Cliente):
+    def init(self, descripcionOperador, detalleAccionRequerida, cambioEstado: List[CambioEstado], cliente: Cliente, respuestas):
         self.descripcionOperador = descripcionOperador
         self.detalleAccionRequerida = detalleAccionRequerida
         self.duracion = 0
         self.encuestaEnviada = False
         self.observacionAuditor = ""
+        self.respuestas = respuestas
         
         self.opcionSeleccionada: OpcionLlamada = None
         self.subOpcionLlamada: SubOpcionLlamada = None
@@ -19,6 +20,7 @@ class Llamada:
         self.cliente = cliente
 
     def calcularDuracion(self, inicio, fin):
+        #Calcula la duración de la llamada
         self.duracion = fin - inicio
 
     def esDePeriodo(self, inicioPeriodo, finPeriodo):
@@ -26,15 +28,17 @@ class Llamada:
         pass
 
     def getDuracion(self):
+        #Devuelve la duracion
         return self.duracion
 
     def getNombreClienteDeLlamada(self):
         # Lógica para obtener el nombre del cliente asociado a la llamada
-        pass
+        return self.cliente
+
 
     def getRespuestas(self):
         # Lógica para obtener las respuestas de la encuesta de la llamada
-        pass
+        return self.respuestas
 
     def setDescripcionOperador(self, descripcionOperador):
         self.descripcionOperador = descripcionOperador

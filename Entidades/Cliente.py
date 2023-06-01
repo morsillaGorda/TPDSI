@@ -10,10 +10,13 @@ class Cliente:
         self.info = info
 
     def esCliente(self):
-        return True
+        # Verifica si el atributo "Cliente" es verdadero
+        return self.info
 
     def getNombre(self):
+        #Devuelve el valor del atributo  "nombre"
         return self.nombre_completo
 
     def getNroCelular(self):
+        #Devuelve el valor del atributo "nroCelular"
         return self.nroCelular

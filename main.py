@@ -73,4 +73,4 @@ if __name__ == "__main__":
     gestor = GestorRtaOperador()
 
     # Llamar al método respuestaOperador
-    gestor.nuevaRespuestaOperador()
+    gestor.nuevaRtaOperador()
