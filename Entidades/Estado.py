@@ -7,9 +7,9 @@ class Estado:
         # Lógica para verificar si el estado es finalizado con un booleano
         return self.nombre == "Finalizado"
 
-    def esIniciada(self):
-        # Lógica para verificar si el estado es iniciado con un booleano
-        return self.nombre == "Iniciado"
+    def esEnCurso(self):
+        # Lógica para verificar si el estado es En Curso con un booleano
+        return self.nombre == "Es en curso"
 
     def getNombre(self):
         # Obtiene el nombre del estado

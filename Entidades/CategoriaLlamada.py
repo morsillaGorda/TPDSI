@@ -22,3 +22,9 @@ class CategoriaLlamada():
     def getNombre(self):
         #Devuelve el valor del atributo "nombre"
         return self.nombre
+    
+    def buscarValidaciones(self):
+        return self.opcion
+
+    def getDescripcionCompletaCategoriaYOpcion(self):
+        return self.opcion.getDescripcionConSubOpcion()

@@ -18,7 +18,7 @@ class OpcionLlamada:
 
     def getDescripcionConSubOpcion(self):
         #Devuelve el valor de una descripcion a partir de los valores de "nombre" y "nroOrden"
-        descripcion = f"{self.nombre} - Nro {self.nroOrden}"
+        descripcion = self.subOpcionLlamada.getNombre()
         return descripcion
     
     def getNombre(self):
@@ -28,4 +28,6 @@ class OpcionLlamada:
     def getNroOrden(self):
         # Devuelve el valor del atributo 'nroOrden'
         return self.nroOrden
+    
+    
 

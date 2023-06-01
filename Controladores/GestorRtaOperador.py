@@ -13,6 +13,7 @@ from Interfaces.PantallaRtaOperador import PantallaRtaOperador
 # Array con los diferentes estados del objeto Estado
 estados: List[Estado]  = [
     Estado("Finalizado"),
+    Estado("EnCurso"),
     Estado("Iniciado")
 ]
 
@@ -22,6 +23,7 @@ datosLlamadas = None
 estadoFinalizada: Estado = None
 estadoEnCurso:Estado = None
 nombreCliente = None
+informacionCliente: Cliente = None
 fechaActual: datetime = None
 descripcionCategoriasOpcionesSubopciones = None
 operador = ""
@@ -45,6 +47,7 @@ class GestorRtaOperador:
         global descripcionCategoriasOpcionesSubopciones
         global operador
         global validaciones
+        global informacionCliente
 
         self.buscarEstadoEnCurso()
 
@@ -56,7 +59,7 @@ class GestorRtaOperador:
 
         self.pantallaRtaOperador.mostrarDatosLlamada(nombreCliente, descripcionCategoriasOpcionesSubopciones)
 
-        self.pantallaRtaOperador.mostrarValidaciones(validaciones)
+        self.pantallaRtaOperador.mostrarOpcionesDeValidacion(validaciones)
 
         self.pantallaRtaOperador.run()
 
@@ -67,23 +70,39 @@ class GestorRtaOperador:
             for estado in estados:
                 estadoEnCurso = estado
 
-        def obtenerFechaActual(self):
+        def obtenerFechaHoraActual(self):
             return datetime.now()
 
         def obtenerDatosLlamada(self):
             global nombreCliente
             global descripcionCategoriasOpcionesSubopciones
-            global validaciones
 
             nombreCliente = self.llamada.getNombreClienteDeLlamada()
-            validaciones = self.validacion.getMensajeValidacion()
+            descripcionCategoriasOpcionesSubopciones = self.categoriaLlamada.getDescripcionCompletaCategoriaYOpcion()
 
-        def buscarValidaciones(self):
+        def tomarDatosValidacion(self):
             global validaciones
 
-            validaciones = self.opcionValidacion.getCorrecta()
+            validaciones = self.categoriaLlamada.buscarValidaciones()
 
+
+        def obtenerDatosOperador(self):
+
+            global operador
+
+            operador = self.llamada.tomarOperador()
+
+
+        def validarInformacionCliente(self):
+
+            global informacionCliente
+
+            informacionCliente = self.Cliente.esInformacionCorrecta()
 
         
+        def buscarEstadoFinalizada(self):
 
-        
+            global estadoFinalizada
+
+            for estado in estados:
+                estadoFinalizada = estado

@@ -6,13 +6,14 @@ from Entidades.Cliente import Cliente
 from Entidades.CambioEstado import CambioEstado
 
 class Llamada:
-    def init(self, descripcionOperador, detalleAccionRequerida, cambioEstado: List[CambioEstado], cliente: Cliente, respuestas):
+    def init(self, descripcionOperador, detalleAccionRequerida, cambioEstado: List[CambioEstado], cliente: Cliente, respuestas, operador):
         self.descripcionOperador = descripcionOperador
         self.detalleAccionRequerida = detalleAccionRequerida
         self.duracion = 0
         self.encuestaEnviada = False
         self.observacionAuditor = ""
         self.respuestas = respuestas
+        self.operador = operador
         
         self.opcionSeleccionada: OpcionLlamada = None
         self.subOpcionLlamada: SubOpcionLlamada = None
@@ -49,3 +50,6 @@ class Llamada:
     def setEstadoActual(self, estado):
         # Lógica para establecer el estado actual de la llamada
         pass
+
+    def tomarOperador(self):
+        return self.operador
