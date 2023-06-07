@@ -18,13 +18,9 @@ class OpcionLlamada:
 
     def getDescripcionConSubOpcion(self):
         #Devuelve el valor de una descripcion a partir de los valores de "nombre" y "nroOrden"
-        nombres = []
 
-        for n in self.subOpcionLlamada:
-            nombre = n.getNombre()
-            nombres.append(nombre)
-
-        return nombres
+        descripcion = f"{self.nombre} > { self.subOpcionLlamada[0].getNombre()}"
+        return descripcion
     
     def getNombre(self):
         # Devuelve el valor del atributo 'nombre'
@@ -39,7 +35,7 @@ class OpcionLlamada:
         subOpcionesValidacion = []
 
         for opc in self.subOpcionLlamada:
-            subOpcionValidacion = opc.getMensajeValidacion()
+            subOpcionValidacion = opc.buscarValidaciones()
             subOpcionesValidacion.append(subOpcionValidacion)
 
         return subOpcionesValidacion

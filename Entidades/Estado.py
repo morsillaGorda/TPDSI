@@ -10,6 +10,9 @@ class Estado:
     def esEnCurso(self):
         # Lógica para verificar si el estado es En Curso con un booleano
         return self.nombre == "EnCurso"
+    
+    def esIniciado(self):
+        return self.nombre == "Iniciado"
 
     def getNombre(self):
         # Obtiene el nombre del estado

@@ -17,8 +17,8 @@ class Validacion:
         mensajesValidacion = []
         
         # Itera sobre cada objeto de Validación en la lista validacionRequerida
-        for opcValidacion in self.validacionRequerida:
-            mensajeValidacion = OpcionValidacion.getCorrecta()
+        for opcValidacion in self.opcionesValidacion:
+            mensajeValidacion = opcValidacion.getCorrecta()
             mensajesValidacion.append(mensajeValidacion)
         
         # Devuelve la lista de mensajes de validación

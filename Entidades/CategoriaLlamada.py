@@ -36,10 +36,5 @@ class CategoriaLlamada():
 
     def getDescripcionCompletaCategoriaYOpcion(self):
 
-        descripciones = []
-
-        for opc in self.opcion:
-            descripcion = opc.getDescripcionConSubOpcion()
-            descripciones.append(descripcion)
-
-        return descripciones
+        descripcion = f"Categoría: {self.nombre} > {self.opcion[0].getDescripcionConSubopcion()}"
+        return descripcion

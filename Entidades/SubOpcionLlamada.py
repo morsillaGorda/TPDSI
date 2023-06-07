@@ -23,7 +23,8 @@ class SubOpcionLlamada:
         # Itera sobre cada objeto de Validación en la lista validacionRequerida
         for validacion in self.validacionRequerida:
             mensajeValidacion = validacion.getMensajeValidacion()
-            mensajesValidacion.append(mensajeValidacion)
+            opcionesValidacion = validacion.getOpcionesValidacion()
+            mensajesValidacion.append([mensajeValidacion, opcionesValidacion])
         
         # Devuelve la lista de mensajes de validación
         return mensajesValidacion

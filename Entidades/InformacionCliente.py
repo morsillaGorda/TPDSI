@@ -9,8 +9,8 @@ class InformacionCliente:
         self.esOpcionCorrecta: OpcionValidacion = None  #Opción correcta de la validacion
 
     def esInformacionCorrecta(self):
-        if self.validacion is not None:
-            return self.validacion.esValidacion() # Devuelve True si la opción es correcta
+        if self.esInformacionCorrecta is not None:
+            return self.esInformacionCorrecta.getCorrecta() # Devuelve True si la opción es correcta
         else:
             return False #Si no hay opción correcta, entonces la información será incorrecta
         

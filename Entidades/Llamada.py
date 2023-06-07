@@ -36,7 +36,7 @@ class Llamada:
 
     def getNombreClienteDeLlamada(self):
         # Lógica para obtener el nombre del cliente asociado a la llamada
-        return self.cliente.esInformacionCorrecta()
+        return self.cliente.getNombre()
 
 
     def getRespuestas(self):

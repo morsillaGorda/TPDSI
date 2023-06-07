@@ -21,6 +21,8 @@ class Cliente:
         #Devuelve el valor del atributo "nroCelular"
         return self.nroCelular
 
-    def esInformacionCorrecta(self):
+    def esInformacionCorrecta(self, opcion):
         # Verifica si el atributo "Cliente" es verdadero
-        return self.info
+        for i in self.info:
+            
+            return i.esInformacionCorrecta()
