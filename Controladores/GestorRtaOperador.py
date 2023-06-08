@@ -28,7 +28,7 @@ descripcionCategoriaYOpcion = ""
 mensajesValidacionesDeSubopcionSeleccionada = None
 pantallaRegistrarRespuestaDeOperador: PantallaRtaOperador = None
 
-class GestorRegistrarRespuestaDeOperador:
+class GestorRtaOperador:
     def __init__(self, llamada: Llamada, categoriaLlamada: CategoriaLlamada):
         self.llamada = llamada
         self.categoriaLlamada = categoriaLlamada
@@ -50,19 +50,19 @@ class GestorRegistrarRespuestaDeOperador:
         fechaHoraActual = self.obtenerFechaHoraActual()
         
         # Seteo el estado actual de la llamada a "EnCurso"
-        self.llamada.setEstadoActual(estadoEnCurso, fechaHoraActualInicioLlamada)
+        self.llamada.setEstadoActual(estadoEnCurso, fechaHoraActual)
         
         # Obtengo datos de la llamada
         self.obtenerDatosLlamada()
         
         
         # Muestro los datos de la llamada
-        self.pantallaRegistrarRespuestaDeOperador.mostrarDatosDeLaLlamada(nombreClienteLlamada, descripcionCategoriaYOpcion)
+        self.pantallaRtaOperador.mostrarDatosDeLaLlamada(nombreClienteLlamada, descripcionCategoriaYOpcion)
 
         # Muestro opciones de validacion
-        self.pantallaRegistrarRespuestaDeOperador.mostrarOpcionesDeValidacion(mensajesValidacionesDeSubopcionSeleccionada)
+        self.pantallaRtaOperador.mostrarOpcionesDeValidacion(mensajesValidacionesDeSubopcionSeleccionada)
         
-        self.pantallaRegistrarRespuestaDeOperador.run()
+        self.pantallaRtaOperador.run()
         
     
     def buscarEstadoEnCurso(self):
@@ -89,8 +89,8 @@ class GestorRegistrarRespuestaDeOperador:
 
 
     def tomarOpcionDeValidacion(self, opcionSeleccionada):
-        esInformacionCorrecta = self.llamada.cliente.esInformacionCorrecta(opcionSeleccionada)
-        self.pantallaRegistrarRespuestaDeOperador.habilitarSeleccionRespuesta(esInformacionCorrecta, opcionSeleccionada)
+        esInformacionCorrecta = self.llamada.validarInformacionCliente(opcionSeleccionada)
+        self.pantallaRtaOperador.habilitarSeleccionRespuesta(esInformacionCorrecta, opcionSeleccionada)
         
     def tomarConfirmacion(self, descripcion_consulta, accion_realizar):
         global fechaHoraActualInicioLlamada
@@ -102,9 +102,9 @@ class GestorRegistrarRespuestaDeOperador:
         duracion = self.llamada.calcularDuracion(fechaHoraActualInicioLlamada, fechaHoraFinLlamada)
         # Seteo el estado actual de la llamada a "Finalizado"
         self.llamada.setEstadoActual(estadoFinalizado, fechaHoraFinLlamada)
-        self.llamada.setDuracion(duracion)
-        self.llamada.setDescripcionOperador(descripcion_consulta)
-        self.pantallaRegistrarRespuestaDeOperador.mostrarMensajeDeConfirmacion()
+        #self.llamada.setDuracion(duracion)
+        #self.llamada.setDescripcionOperador(descripcion_consulta)
+        self.pantallaRtaOperador.mostrarMensajeDeConfirmacion()
         self.finCU()
         
     def llamarCU28(self, accion_realizar):
@@ -131,5 +131,5 @@ class GestorRegistrarRespuestaDeOperador:
         # Seteo el estado actual de la llamada a "Finalizado"
         self.llamada.setEstadoActual(estadoFinalizado, fechaHoraFinLlamada)
         self.llamada.setDuracion(duracion)
-        self.pantallaRegistrarRespuestaDeOperador.mostrarMensajeDeLlamadaTerminada()
+        self.pantallaRtaOperador.mostrarMensajeDeLlamadaTerminada()
         self.finCU()

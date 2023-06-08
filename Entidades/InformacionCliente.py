@@ -4,16 +4,18 @@ from Entidades.Validacion import Validacion
 class InformacionCliente:
     def __init__(self, datoAValidar, validacion: Validacion):
         #Inicializa los atributos con los valores recibidos
-        self.datoAValidar = datoAValidar #
-        self.esInformacionCorrecta = validacion #Validación de la información del Cliente
+        self.datoAValidar = datoAValidar # Dato a validar
+        self.validacion = validacion #Validación de la información del Cliente
         self.esOpcionCorrecta: OpcionValidacion = None  #Opción correcta de la validacion
 
     def esInformacionCorrecta(self):
-        if self.esInformacionCorrecta is not None:
-            return self.esInformacionCorrecta.getCorrecta() # Devuelve True si la opción es correcta
+        if self.esOpcionCorrecta is not None:
+            return self.esOpcionCorrecta.esCorrecta()  # Devuelve True si la opción correcta es correcta
         else:
-            return False #Si no hay opción correcta, entonces la información será incorrecta
-        
-    def esValidacion(self):
-        #Devuelve la Información Validada
-        self.esInformacionCorrecta()
+            return False  # No hay opción correcta, por lo tanto la información no es correcta
+    
+    def esValidacion(self, validacion):
+        if self.datoAValidar == validacion:
+            return True
+        else:
+            return False

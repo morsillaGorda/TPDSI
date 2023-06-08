@@ -1,16 +1,18 @@
+from typing import List
+
 from Entidades.SubOpcionLlamada import SubOpcionLlamada         #Importamos la relacion de agregacion con la clase SubOpcionLlamada
 from Entidades.Validacion import Validacion         #Importamos la relacion de asociacion con la clase Validacion
 
 class OpcionLlamada:
-    def __init__(self, audioMensajeSubOpcion, mensajeSubOpciones, nombre, nroOrden):
+    def __init__(self, audioMensajeSubOpcion, mensajeSubOpciones, nombre, nroOrden, subOpcionLlamada: List[SubOpcionLlamada]):
         #Inicializamos los valores de los atributos
         self.audioMensajeSubOpcion = audioMensajeSubOpcion
         self.mensajeSubOpciones = mensajeSubOpciones
         self.nombre = nombre
         self.nroOrden = nroOrden
 
-        self.subOpcionLlamada: SubOpcionLlamada = []
-        self.validacionesRequeridas: Validacion = []
+        self.subOpcionLlamada = subOpcionLlamada
+        self.validacionesRequeridas: List[Validacion] = []
 
     def getAudioMensajeSubOpcion(self):
         #Devuelve el valor del atributo "audioMensajeSubOpcion"
@@ -32,14 +34,20 @@ class OpcionLlamada:
     
     def buscarValidaciones(self):
         #Busca los valores del atributo 
-        subOpcionesValidacion = []
+        mensajesValidacion = []
 
-        for opc in self.subOpcionLlamada:
-            subOpcionValidacion = opc.buscarValidaciones()
-            subOpcionesValidacion.append(subOpcionValidacion)
+        if(self.subOpcionLlamada is None or len(self.subOpcionLlamada) == 0):
 
-        return subOpcionesValidacion
-    
+
+            for validacion in self.validacionesRequeridas:
+
+                mensajeValidacion = validacion.getMensajeValidacion()
+                opcionesValidacion = validacion.getOpcionesValidacion
+                mensajesValidacion.append([mensajeValidacion, opcionesValidacion])
+        else:
+            mensajesValidacion = self.subOpcionLlamada[0].buscarValidaciones()
+
+        return mensajesValidacion
     
     
 

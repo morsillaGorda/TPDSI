@@ -128,7 +128,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-class PantallaRegistrarRespuestaDeOperador:
+class PantallaRtaOperador:
     def __init__(self, gestor):
         self.gestor = gestor
         self.ventana = tk.Tk()

@@ -13,14 +13,16 @@ class Validacion:
         return self.audioMensajeValidacion
 
     def getMensajeValidacion(self):
+        return self.nombre
+    
+    def getOpcionesValidacion(self):
          # Crea una lista vacía para almacenar los mensajes de validación
         mensajesValidacion = []
         
         # Itera sobre cada objeto de Validación en la lista validacionRequerida
         for opcValidacion in self.opcionesValidacion:
-            mensajeValidacion = opcValidacion.getCorrecta()
+            mensajeValidacion = opcValidacion.getDescripcion()
             mensajesValidacion.append(mensajeValidacion)
         
         # Devuelve la lista de mensajes de validación
         return mensajesValidacion
-

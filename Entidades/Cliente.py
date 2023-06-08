@@ -3,10 +3,10 @@ from typing import List
 from Entidades.InformacionCliente import InformacionCliente
 
 class Cliente:
-    def __init__(self, dni, nombreCompleto, nroCelular, info: List[InformacionCliente]):
+    def __init__(self, dni, nombreCompleto, info: List[InformacionCliente]):
         self.dni = dni
         self.nombreCompleto = nombreCompleto
-        self.nroCelular = nroCelular
+        self.nroCelular = ""
         self.info = info
 
     def esCliente(self):
@@ -15,14 +15,13 @@ class Cliente:
 
     def getNombre(self):
         #Devuelve el valor del atributo  "nombre"
-        return self.nombre_completo
-
-    def getNroCelular(self):
-        #Devuelve el valor del atributo "nroCelular"
-        return self.nroCelular
+        return self.nombreCompleto
 
     def esInformacionCorrecta(self, opcion):
         # Verifica si el atributo "Cliente" es verdadero
-        for i in self.info:
-            
-            return i.esInformacionCorrecta()
+        for informacion in self.info:
+            esValdacion = informacion.esValidacion(opcion)
+            esCorrecta = informacion.esInformacionCorrecta()
+            if (esCorrecta and esValdacion):
+                return True
+        return False

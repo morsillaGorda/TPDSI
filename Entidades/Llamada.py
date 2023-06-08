@@ -21,16 +21,7 @@ class Llamada:
         self.cambioEstado = cambioEstado
         self.cliente = cliente
 
-    def calcularDuracion(self, inicio, fin):
-        #Calcula la duración de la llamada
-        self.duracion = fin - inicio
-
-    def esDePeriodo(self, inicioPeriodo, finPeriodo):
-        # Lógica para verificar si la llamada está dentro de un período específico
-        pass
-
-    def getDuracion(self, fechaHoraInicio: datetime, fechaHoraFin: datetime):
-        #Devuelve la duracion
+    def calcularDuracion(self, fechaHoraInicio: datetime, fechaHoraFin: datetime):
         duracion = (fechaHoraFin - fechaHoraInicio).total_seconds()
         return duracion
 
@@ -51,7 +42,7 @@ class Llamada:
         return self.operador
     
     #Verifica si valor del atributo estado es "enCurso"
-    def esEnCurso(self, estado, fechaHoraFin):
+    def setEstadoActual(self, estado, fechaHoraFin):
         # Lógica para establecer el estado actual de la llamada
         # Buscar el último cambio de estado en la lista de cambios de estado
         ultimoCambioEstado = None
@@ -64,3 +55,7 @@ class Llamada:
         nuevoCambioEstado = CambioEstado.new(fechaHoraFin, estado)  # Crear un nuevo cambio de estado con la fecha y hora de inicio = fechaHoraEstadoFin del ultimo estado y el estado proporcionados
     
         self.cambioEstado.append(nuevoCambioEstado) # Agregar el nuevo cambio de estado a la lista de cambios de estado
+
+    def validarInformacionCliente(self, opcionSeleccionada):
+        
+        return self.cliente.esInformacionCorrecta(opcionSeleccionada)
