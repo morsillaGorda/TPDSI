@@ -50,7 +50,7 @@ class GestorRtaOperador:
         fechaHoraActual = self.obtenerFechaHoraActual()
         
         # Seteo el estado actual de la llamada a "EnCurso"
-        self.llamada.setEstadoActual(estadoEnCurso, fechaHoraActual)
+        self.llamada.llamadaEnCurso(estadoEnCurso, fechaHoraActual)
         
         # Obtengo datos de la llamada
         self.obtenerDatosLlamada()
@@ -61,6 +61,7 @@ class GestorRtaOperador:
 
         # Muestro opciones de validacion
         self.pantallaRtaOperador.mostrarOpcionesDeValidacion(mensajesValidacionesDeSubopcionSeleccionada)
+        
         
         self.pantallaRtaOperador.run()
         
@@ -93,15 +94,15 @@ class GestorRtaOperador:
         self.pantallaRtaOperador.habilitarSeleccionRespuesta(esInformacionCorrecta, opcionSeleccionada)
         
     def tomarConfirmacion(self, descripcion_consulta, accion_realizar):
-        global fechaHoraActualInicioLlamada
+        global fechaHoraActual
         global fechaHoraFinLlamada
         global estadoFinalizado
         self.llamarCU28(accion_realizar)
         self.buscarEstadoFinalizado()
         fechaHoraFinLlamada = self.obtenerFechaHoraActual()
-        duracion = self.llamada.calcularDuracion(fechaHoraActualInicioLlamada, fechaHoraFinLlamada)
+        duracion = self.llamada.calcularDuracion(fechaHoraActual, fechaHoraFinLlamada)
         # Seteo el estado actual de la llamada a "Finalizado"
-        self.llamada.setEstadoActual(estadoFinalizado, fechaHoraFinLlamada)
+        self.llamada.finalizarLlamada(estadoFinalizado, fechaHoraFinLlamada)
         #self.llamada.setDuracion(duracion)
         #self.llamada.setDescripcionOperador(descripcion_consulta)
         self.pantallaRtaOperador.mostrarMensajeDeConfirmacion()
@@ -115,7 +116,7 @@ class GestorRtaOperador:
 
         # Iterar sobre el arreglo de estados
         for estado in estados:
-            if estado.esFinalizado():
+            if estado.esFinalizada():
                 estadoFinalizado = estado
                 
     def finCU(self):
@@ -130,6 +131,7 @@ class GestorRtaOperador:
         duracion = self.llamada.calcularDuracion(fechaHoraActualInicioLlamada, fechaHoraFinLlamada)
         # Seteo el estado actual de la llamada a "Finalizado"
         self.llamada.setEstadoActual(estadoFinalizado, fechaHoraFinLlamada)
-        self.llamada.setDuracion(duracion)
+        self.llamada.calcularDuracion(duracion)
         self.pantallaRtaOperador.mostrarMensajeDeLlamadaTerminada()
         self.finCU()
+        

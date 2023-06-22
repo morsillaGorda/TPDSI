@@ -14,32 +14,29 @@ from Entidades.Llamada import Llamada
 from Entidades.OpcionLlamada import OpcionLlamada
 
 
-opcionValidacion1a: OpcionValidacion = OpcionValidacion(True, 3)
-opcionValidacion1b: OpcionValidacion = OpcionValidacion(False, 6)
-opcionValidacion1c: OpcionValidacion = OpcionValidacion(False, 1)
-validacion1: Validacion = Validacion("Ingrese cantidad de hijos",
-                                     "CantidadDeHijos",
-                                     [opcionValidacion1a, opcionValidacion1b, opcionValidacion1c],
-                                     )
+opcionValidacion1a: OpcionValidacion = OpcionValidacion(False, "21-02-09")
+opcionValidacion1b: OpcionValidacion = OpcionValidacion(False,"10-07-12")
+opcionValidacion1c: OpcionValidacion = OpcionValidacion(True, "14-06-08")
 
-opcionValidacion2a: OpcionValidacion = OpcionValidacion(False, "5000")
-opcionValidacion2b: OpcionValidacion = OpcionValidacion(True, "5001")
-opcionValidacion2c: OpcionValidacion = OpcionValidacion(False, "5003")
+validacion1: Validacion = Validacion ("Ingrese fecha de nacimiento","Fecha de nacimiento",[opcionValidacion1a, opcionValidacion1b, opcionValidacion1c],)
+                                     
+                                     
 
-validacion2: Validacion = Validacion("Ingrese el código postal",
-                                     "codigoPostal",
-                                     [opcionValidacion2a, opcionValidacion2b, opcionValidacion2c],
-                                     )
+opcionValidacion2a: OpcionValidacion = OpcionValidacion(False, "24")
+opcionValidacion2b: OpcionValidacion = OpcionValidacion(True, "48")
+opcionValidacion2c: OpcionValidacion = OpcionValidacion(False, "34")
 
-informacionCliente1: InformacionCliente = InformacionCliente(3, validacion1)
-informacionCliente1.opcionCorrecta = opcionValidacion1a
+validacion2: Validacion = Validacion("Ingrese su edad","Edad",[opcionValidacion2a, opcionValidacion2b, opcionValidacion2c],)
 
-informacionCliente2: InformacionCliente = InformacionCliente("5001", validacion2)
-informacionCliente2.opcionCorrecta = opcionValidacion2b
+informacionCliente1: InformacionCliente = InformacionCliente("14-06-08", validacion1)
+informacionCliente1.esOpcionCorrecta = opcionValidacion1c
+
+informacionCliente2: InformacionCliente = InformacionCliente("48", validacion2)
+informacionCliente2.esOpcionCorrecta = opcionValidacion2b
 
 
 
-cliente1: Cliente = Cliente("44987546", "Juan Perez", [informacionCliente1, informacionCliente2])
+cliente1: Cliente = Cliente("40675121", "Bruno Bobadilla", [informacionCliente1, informacionCliente2])
 
 estadoInicial: Estado = Estado("Iniciado")
 
@@ -49,35 +46,37 @@ cambioEstadoInicial: CambioEstado = CambioEstado(datetime.now(), estadoInicial)
 llamada: Llamada = Llamada(cliente1, [cambioEstadoInicial])
 
 
-subOpcionLlamadaRobo2a: SubOpcionLlamada = SubOpcionLlamada("Titular", 1)
-subOpcionLlamadaRobo2b: SubOpcionLlamada = SubOpcionLlamada("Extension", 2)
+subOpcionLlamadaExtravio2a: SubOpcionLlamada = SubOpcionLlamada("Titular", 1)
+subOpcionLlamadaExtravio2b: SubOpcionLlamada = SubOpcionLlamada("Extension", 2)
 
-subOpcionLlamadaRobo2a.validacionRequerida = [validacion1, validacion2]
+subOpcionLlamadaExtravio2a.validacionRequerida = [validacion1, validacion2]
 
-subOpcionesLlamadaRobo2: List[SubOpcionLlamada] = [subOpcionLlamadaRobo2a]
-opcionLlamadaRobo1: OpcionLlamada = OpcionLlamada("Informar robo", "Informar robo", "Informar robo", 1, [])
+subOpcionesLlamadaExtravio2: List[SubOpcionLlamada] = [subOpcionLlamadaExtravio2a]
+opcionLlamadaExtravio1: OpcionLlamada = OpcionLlamada("Informar extravio", "Informar extravio", "Informar extravio", 1, [])
 
-opcionLlamadaRobo2: OpcionLlamada = OpcionLlamada("Solicitar nueva tarjeta de crédito",
+opcionLlamadaExtravio2: OpcionLlamada = OpcionLlamada("Solicitar nueva tarjeta de crédito",
                                                   "Solicitar nueva tarjeta de crédito",
-                                                  "Solicitar nueva tarjeta de credito", 2, subOpcionesLlamadaRobo2)
+                                                  "Solicitar nueva tarjeta de credito", 2, subOpcionesLlamadaExtravio2)
 
-opcionLlamadaRobo3: OpcionLlamada = OpcionLlamada("Solicitar cancelación de la tarjeta de crédito",
+opcionLlamadaExtravio3: OpcionLlamada = OpcionLlamada("Solicitar cancelación de la tarjeta de crédito",
                                                   "Solicitar cancelación de la tarjeta de crédito",
                                                   "Solicitar cancelacion de la tarjetaDeCredito", 3, [])
 
-opcionesCategoriaLlamadaRobo: List[OpcionLlamada] = [
-    # opcionLlamadaRobo1,
-    opcionLlamadaRobo2,
-    # opcionLlamadaRobo3
+opcionesCategoriaLlamadaExtravio: List[OpcionLlamada] = [
+    # opcionLlamadaExtravio1,
+      opcionLlamadaExtravio2,
+    # opcionLlamadaExtravio3
 ]
 
 categoriaLlamadaRobo: CategoriaLlamada = CategoriaLlamada(
-    "Seleccione opcion para el robo de tarjeta:",
-    "Seleccione opcion para el robo de tarjeta:",
-    "Robo de tarjeta",
+    "Seleccione opcion para nueva tarjeta de credito:",
+    "Seleccione opcion para nueva tarjeta de credito",
+    "Extravio de tarjeta de credito",
     1,
-    opcionesCategoriaLlamadaRobo
+    opcionesCategoriaLlamadaExtravio
 )
+
+
 
 if __name__ == "__main__":
     # Crear una instancia de GestorRegistrarRespuestaDeOperador
@@ -85,3 +84,4 @@ if __name__ == "__main__":
 
     # Llamar al método respuestaOperador
     gestor.nuevaRtaOperador()
+    

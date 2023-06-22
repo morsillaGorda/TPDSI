@@ -11,7 +11,7 @@ class CambioEstado:
 
     def esEstadoInicial(self):
         #Verifica si el estado asociado es Inicial
-        return self.esIniciada()
+        return self.estado.esIniciado()
 
     def esUltimoEstado(self):
         #Verififca si el estado asociado es Finalizado

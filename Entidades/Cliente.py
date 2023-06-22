@@ -21,7 +21,7 @@ class Cliente:
         # Verifica si el atributo "Cliente" es verdadero
         for informacion in self.info:
             esValdacion = informacion.esValidacion(opcion)
-            esCorrecta = informacion.esInformacionCorrecta()
+            esCorrecta = informacion.esInformacionCorrecta() 
             if (esCorrecta and esValdacion):
                 return True
         return False

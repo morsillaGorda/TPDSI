@@ -42,7 +42,7 @@ class Llamada:
         return self.operador
     
     #Verifica si valor del atributo estado es "enCurso"
-    def setEstadoActual(self, estado, fechaHoraFin):
+    def finalizarLlamada(self, estado, fechaHoraFin):
         # Lógica para establecer el estado actual de la llamada
         # Buscar el último cambio de estado en la lista de cambios de estado
         ultimoCambioEstado = None
@@ -55,6 +55,22 @@ class Llamada:
         nuevoCambioEstado = CambioEstado.new(fechaHoraFin, estado)  # Crear un nuevo cambio de estado con la fecha y hora de inicio = fechaHoraEstadoFin del ultimo estado y el estado proporcionados
     
         self.cambioEstado.append(nuevoCambioEstado) # Agregar el nuevo cambio de estado a la lista de cambios de estado
+    
+    def llamadaEnCurso(self, estado, fechaHoraFin):
+        # Lógica para establecer el estado actual de la llamada
+        # Buscar el último cambio de estado en la lista de cambios de estado
+        ultimoCambioEstado = None
+        for cambioEstado in self.cambioEstado:
+            if cambioEstado.esEstadoInicial():
+                ultimoCambioEstado = cambioEstado
+                 
+        ultimoCambioEstado.getFechaHoraFin(fechaHoraFin) # Establecer la fecha y hora de finalización en el último cambio de estado encontrado
+
+        nuevoCambioEstado = CambioEstado.new(fechaHoraFin, estado)  # Crear un nuevo cambio de estado con la fecha y hora de inicio = fechaHoraEstadoFin del ultimo estado y el estado proporcionados
+    
+        self.cambioEstado.append(nuevoCambioEstado) # Agregar el nuevo cambio de estado a la lista de cambios de estado
+
+
 
     def validarInformacionCliente(self, opcionSeleccionada):
         
